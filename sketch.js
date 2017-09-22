@@ -39,7 +39,7 @@ function setup(){
 	graphics=createGraphics(innerWidth,innerHeight);
 	graphics.background(0);
 
-	//stamp image
+	//stamp image. Have to add multiple images
 	img = loadImage('img/star.png');
 	heart = loadImage('img/heart.png');
 	dance = loadImage('img/dance.png');
