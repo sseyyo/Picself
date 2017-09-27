@@ -1,6 +1,8 @@
-// test
 var video;
 var img;
+var heart1;
+var heart2;
+var heart3;
 var leaf;
 var num;
 var snum;
@@ -32,7 +34,8 @@ var graphics;
 var flip, shrink;
 var canvas;
 var vid;
-
+var heartArray = [];
+var randomHeart;
 
 function setup(){
 	//tip postion
@@ -42,8 +45,25 @@ function setup(){
 
 	//stamp image. Have to add multiple images
 	img = loadImage('img/star.png');
-	heart = loadImage('img/heart.png');
+	// img2 = loadImage('img/star2.png');
+
+	heart1 = loadImage('img/heart1.png');
+	// heart2 = loadImage('img/heart2.png');
+	// heart3 = loadImage('img/heart3.png');
+	// heart4 = loadImage('img/heart4.png');
+	// heart5 = loadImage('img/heart5.png');
+	// heart6 = loadImage('img/heart6.png');
+
+	// heartArray.push(heart1);
+	// heartArray.push(heart2);
+	// heartArray.push(heart3);
+	// heartArray.push(heart4);
+	// heartArray.push(heart5);
+	// heartArray.push(heart6);
+
+
 	dance = loadImage('img/dance.png');
+	// dance2 = loadImage('img/dance2.png');
 
 	//greenscreen
 	canvas = createCanvas(innerWidth, innerHeight);
@@ -54,7 +74,7 @@ function setup(){
 	canvas.id('p5canvas');
 
   	video = createCapture(VIDEO);
-  	video.size(2000,800);
+  	video.size(2000,2000);
     video.id('p5video');
    	video.hide();
 
@@ -70,9 +90,9 @@ function setup(){
 
     chroma.source= src;
     target.source= chroma;
-    var r = 103/255;
-    var g = 195/255;
-    var b = 171/255;
+    var r = 35/255;
+    var g = 200/255;
+    var b = 189/255;
 
     chroma.screen = [r,g,b,1];
 
@@ -249,8 +269,11 @@ function stamp(snum){
 	} else if ( stampState2==true &&snum === 2 ){
 
 		if(indexfingerZ <-50){
+		// randomHeart = heartArray[Math.floor(random(0,5))]
+			// graphics.image(randomHeart, mapCX, mapCY,heartSize,heartSize);
+			// console.log(heartArray)
+			graphics.image(heart1, mapCX, mapCY,heartSize,heartSize);
 
-			graphics.image(heart, mapCX, mapCY,heartSize,heartSize);
 			stampState2=false;
 		}
 	}
@@ -318,8 +341,10 @@ function brush(num){
 				graphics.stroke(255,0);
 
 			}else{
+				graphics.strokeWeight(2);
+				// graphics.stroke(random(100,200));
+				graphics.stroke(random(50,100),random(50,150),random(150,280));
 
-				graphics.stroke(random(130,250),random(150,250),random(50,180));
 			}
 
 			graphics.rect(mapCX,mapCY,mapCZ,mapCZ);
@@ -332,7 +357,7 @@ function brush(num){
 
 			}else{
 
-				graphics.stroke(200,0,200);
+				graphics.stroke(255,249,219);
 			}
 			//
 			graphics.strokeWeight(strokeSize);
@@ -384,7 +409,7 @@ function serialEvent() {
 
 		if (inString == "play"){
 
-			vid = createVideo('instruction.mp4');
+			vid = createVideo('instruction_video/instruction.mp4');
 			vid.size(2000,2000);
 			vid.loop();
 			vid.position(0,-0);
